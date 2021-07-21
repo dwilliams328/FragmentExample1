@@ -41,20 +41,16 @@ class SimpleFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentSimpleBinding.inflate(inflater,container,false)
         binding.radioGroup.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { group, checkedId ->
-            var index:Int = binding.radioGroup.checkedRadioButtonId
+            var radioButton: View = group.findViewById(checkedId)
+            var index: Int = group.indexOfChild(radioButton)
             when(index){
-                YES -> binding.fragmentHeader.text = R.string.yes_message.toString()
-                NO -> binding.fragmentHeader.text = R.string.no_message.toString()
+                YES -> binding.fragmentHeader.text = getString(R.string.yes_message)
+                NO -> binding.fragmentHeader.text = getString(R.string.no_message)
                 else -> binding.fragmentHeader.text = "N/A Response"
             }
-
         })
 
-
         val view = binding.root
-//        val RadioGroup = view.findViewById<RadioGroup>(R.id.radio_group)
-
-
         return view
     }
 
